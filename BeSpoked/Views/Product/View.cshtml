@@ -1,0 +1,77 @@
+﻿@using BeSpoked.ViewModels;
+@using BeSpoked.Utilities;
+@{
+    var product = (ProductViewModel)ViewData["Product"];
+}
+
+<h1>Product: @product.Pr_Name</h1>
+
+<div class="row">
+    <div class="col">
+        <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-Pr_Key="@product.Pr_Key">Edit</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <label asp-for="@product.Pr_Name"></label>
+    </div>
+    <div class="col">
+        @product.Pr_Name
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <label asp-for="@product.Pr_Manufacturer"></label>
+    </div>
+    <div class="col">
+        @product.Pr_Manufacturer
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <label asp-for="@product.Pr_Style"></label>
+    </div>
+    <div class="col">
+        @product.Pr_Style
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <label asp-for="@product.Pr_Amt_Purchase"></label>
+    </div>
+    <div class="col">
+        $@product.Pr_Amt_Purchase
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <label asp-for="@product.Pr_Amt_Sale"></label>
+    </div>
+    <div class="col">
+        $@product.Pr_Amt_Sale
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <label asp-for="@product.Pr_Qty"></label>
+    </div>
+    <div class="col">
+        @product.Pr_Qty
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <label asp-for="@product.Pr_Commission"></label>
+    </div>
+    <div class="col">
+        @Formatter.DisplayPercentage(product.Pr_Commission)
+    </div>
+</div>
+

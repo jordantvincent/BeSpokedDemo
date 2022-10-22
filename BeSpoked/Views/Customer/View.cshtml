@@ -1,0 +1,67 @@
+﻿@using BeSpoked.Models;
+@{
+    var customer = (CustomerModel)ViewData["Customer"];
+}
+
+<h1>Customer: @customer.Cu_Name_First @customer.Cu_Name_FL</h1>
+
+<div class="row">
+    <div class="col">
+        <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-Cu_Key="@customer.Cu_Key">Edit</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <label asp-for="@customer.Cu_Name_First"></label>
+    </div>
+    <div class="col">
+        @customer.Cu_Name_First
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <label asp-for="@customer.Cu_Name_Last"></label>
+    </div>
+    <div class="col">
+        @customer.Cu_Name_Last
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <label asp-for="@customer.Cu_Addr_1"></label>
+    </div>
+    <div class="col">
+        @customer.Cu_Addr_1
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <label asp-for="@customer.Cu_Addr_2"></label>
+    </div>
+    <div class="col">
+        @customer.Cu_Addr_2
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <label asp-for="@customer.Cu_Phone"></label>
+    </div>
+    <div class="col">
+        @customer.Cu_Phone
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <label asp-for="@customer.Cu_Date_Start"></label>
+    </div>
+    <div class="col">
+        @customer.Cu_Date_Start
+    </div>
+</div>
+

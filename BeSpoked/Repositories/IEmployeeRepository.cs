@@ -9,5 +9,7 @@ namespace BeSpoked.Repositories
     public interface IEmployeeRepository
     {
         public List<EmployeeModel> GetAll();
+
+        public void Create(EmployeeModel model);
     }
 }

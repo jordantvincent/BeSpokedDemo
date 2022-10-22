@@ -1,0 +1,74 @@
+﻿@using BeSpoked.Models;
+@model EmployeeModel;
+
+<form method="post" style="margin: 0px auto; max-width: 500px;">
+    <div class="form-header">
+        <h1>New Employee</h1>
+    </div>
+
+    <div class="form-body">
+        <div class="row">
+            <div class="col">
+                <label asp-for="@Model.Em_Name_First"></label>
+                <input class="form-control" asp-for="@Model.Em_Name_First" placeholder="First Name"/>
+                <span class="text-danger text-center" asp-validation-for="@Model.Em_Name_First"></span>
+            </div>
+            <div class="col">
+                <label asp-for="@Model.Em_Name_Last"></label>
+                <input class="form-control" asp-for="@Model.Em_Name_Last" placeholder="Last Name"/>
+                <span class="text-danger text-center" asp-validation-for="@Model.Em_Name_Last"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label asp-for="@Model.Em_Addr_1"></label>
+                <input class="form-control" asp-for="@Model.Em_Addr_1" placeholder="123 Main St"/>
+                <span class="text-danger text-center" asp-validation-for="@Model.Em_Addr_1"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label asp-for="@Model.Em_Addr_2"></label>
+                <input class="form-control" asp-for="@Model.Em_Addr_2" placeholder="Alpharetta, GA 30022" />
+                <span class="text-danger text-center" asp-validation-for="@Model.Em_Addr_2"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label asp-for="@Model.Em_Phone"></label>
+                <input type="number" class="form-control" asp-for="@Model.Em_Phone" placeholder="Phone" />
+                <span class="text-danger text-center" asp-validation-for="@Model.Em_Phone"></span>
+            </div>
+            <div class="col">
+                <label asp-for="@Model.Em_Date_Start"></label>
+                <input type="date" class="form-control" asp-for="@Model.Em_Date_Start" />
+                <span class="text-danger text-center" asp-validation-for="@Model.Em_Date_Start"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label asp-for="@Model.Em_Dm_Key"></label>
+                <select class="form-control" asp-for="@Model.Em_Dm_Key">
+                    <option value="@null">Select</option>
+                    <option value="1">Management</option>
+                    <option value="2">Sales</option>
+                </select>
+                <span class="text-danger text-center" asp-validation-for="@Model.Em_Dm_Key"></span>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="form-footer">
+        <div class="row text-right" style="margin: 15px 0;">
+            <div class="col">
+                <button class="btn btn-sm btn-primary" type="submit"> Create </button>
+            </div>
+        </div>
+    </div>
+</form>
