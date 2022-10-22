@@ -1,18 +1,19 @@
-﻿@{
+﻿@using BeSpoked.Models;
+@{
     ViewData["Title"] = "Home Page";
+
+    var employees = (List<EmployeeModel>)ViewData["EmployeeList"];
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Employee List</h1>
+
+@foreach(var employee in employees)
+            {
+                <div class="row">
+                    <div class="col">
+                        @employee.Em_Name_FL
+                    </div>
+                </div>
+            }
 
 
-<div>
-    test push to github
-</div>
-
-
-<div>
-    Test commit
-</div>
