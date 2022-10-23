@@ -1,0 +1,95 @@
+﻿@using BeSpoked.Models;
+@using BeSpoked.ViewModels;
+@{
+    var year = (int)ViewData["Year"];
+    var quarter = (int)ViewData["Quarter"];
+    var years = (List<int>)ViewData["Years"];
+    var summary = (List<SalespersonSummaryViewModel>)ViewData["Summary"];
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index" asp-area="">Home</a></li>
+    <li class="breadcrumb-item"><a asp-controller="Sales" asp-action="List" asp-area="">Sales</a></li>
+    <li class="breadcrumb-item active">@year Q@(quarter) Report</li>
+</ol>
+
+<h3>Commission Report: @year Q@(quarter)</h3>
+
+
+<div class="row" style="float:right; margin-bottom: 20px;">
+    <div class="col-auto">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Quarter: @quarter
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <a class="dropdown-item" asp-action="QuarterlyReport" asp-route-Quarter="1" asp-route-Year="@year">Q1</a>
+                <a class="dropdown-item" asp-action="QuarterlyReport" asp-route-Quarter="2" asp-route-Year="@year">Q2</a>
+                <a class="dropdown-item" asp-action="QuarterlyReport" asp-route-Quarter="3" asp-route-Year="@year">Q3</a>
+                <a class="dropdown-item" asp-action="QuarterlyReport" asp-route-Quarter="4" asp-route-Year="@year">Q4</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-auto">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Year: @year
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                @foreach (var yr in years)
+                {
+                    <a class="dropdown-item" asp-action="QuarterlyReport" asp-route-Year="@yr" asp-route-Quarter="1">@yr</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Salesperson</th>
+            <th>Total Commission</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var salesperson in summary)
+        {
+            <tr>
+                <td>
+                    <span>@salesperson.Sa_Rank</span>
+
+                    @switch (salesperson.Sa_Rank)
+                    {
+                        case 1:
+                            <i class="fa-solid fa-medal" style="color: #fbb22f"></i>
+                            break;
+                        case 2:
+                            <i class="fa-solid fa-medal" style="color: #b2b2b2"></i>
+                            break;
+                        case 3:
+                            <i class="fa-solid fa-medal" style="color: #8d591a"></i>
+                            break;
+                        default:
+                            break;
+                    }
+                </td>
+
+                <td>@salesperson.Sp_Name</td>
+
+                <td>$@salesperson.Sa_Commission_Amt.ToString("N2")</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+@if (summary.Count == 0)
+{
+    <div class="row text-center">
+        <div class="col">
+            <span>No sales for this quarter</span>
+        </div>
+    </div>
+}

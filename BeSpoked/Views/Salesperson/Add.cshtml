@@ -1,0 +1,86 @@
+﻿@using BeSpoked.Models;
+@model SalespersonModel;
+ 
+@{
+    var managers = (List<SelectListModel>)ViewData["Managers"];
+}
+
+<form method="post" class="form-custom" style="margin: 50px auto; max-width: 500px;">
+    <div class="form-header">
+        <h1>New Salesperson</h1>
+    </div>
+
+    <div class="form-body">
+        <div class="row">
+            <div class="col">
+                <label asp-for="@Model.Sp_Name_First"></label>
+                <input class="form-control" asp-for="@Model.Sp_Name_First" placeholder="First Name" />
+                <span class="text-danger text-center" asp-validation-for="@Model.Sp_Name_First"></span>
+            </div>
+            <div class="col">
+                <label asp-for="@Model.Sp_Name_Last"></label>
+                <input class="form-control" asp-for="@Model.Sp_Name_Last" placeholder="Last Name" />
+                <span class="text-danger text-center" asp-validation-for="@Model.Sp_Name_Last"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label asp-for="@Model.Sp_Addr_1"></label>
+                <input class="form-control" asp-for="@Model.Sp_Addr_1" placeholder="123 Main St" />
+                <span class="text-danger text-center" asp-validation-for="@Model.Sp_Addr_1"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label asp-for="@Model.Sp_Addr_2"></label>
+                <input class="form-control" asp-for="@Model.Sp_Addr_2" placeholder="Alpharetta, GA 30022" />
+                <span class="text-danger text-center" asp-validation-for="@Model.Sp_Addr_2"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label asp-for="@Model.Sp_Phone"></label>
+                <input type="number" class="form-control" asp-for="@Model.Sp_Phone" placeholder="Phone" />
+                <span class="text-danger text-center" asp-validation-for="@Model.Sp_Phone"></span>
+            </div>
+            <div class="col">
+                <label asp-for="@Model.Sp_Date_Start"></label>
+                <input type="date" class="form-control" asp-for="@Model.Sp_Date_Start" />
+                <span class="text-danger text-center" asp-validation-for="@Model.Sp_Date_Start"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label asp-for="@Model.Sp_Mg_Key"></label>
+                <select class="form-control" asp-for="@Model.Sp_Mg_Key">
+                    <option value="@null">Select</option>
+                    @foreach (var manager in managers)
+                    {
+                        <option value="@manager.Key">@manager.Display</option>
+                    }
+                </select>
+                <span class="text-danger text-center" asp-validation-for="@Model.Sp_Mg_Key"></span>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="form-footer">
+        <div class="form-footer">
+            <div class="row" style="margin: 15px 0;">
+                <div class="col">
+                    <a class="btn btn-sm btn-outline-dark" asp-action="List">Cancel</a>
+                </div>
+                <div class="col text-right">
+                    <a class="btn btn-sm btn-outline-dark" asp-action="Add">Clear</a>
+                    <button class="btn btn-sm btn-primary" type="submit"> Create </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

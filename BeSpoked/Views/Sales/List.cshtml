@@ -1,0 +1,71 @@
+﻿@using BeSpoked.Models;
+@using BeSpoked.ViewModels;
+@{
+    var sales = (List<SalesViewModel>)ViewData["Sales"];
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index" asp-area="">Home</a></li>
+    <li class="breadcrumb-item active">Sales</li>
+</ol>
+
+<h1>Sales</h1>
+
+<div class="row">
+    <div class="col">
+        <a class="btn btn-sm btn-primary" asp-action="QuarterlyReport">Quarterly Report</a>
+    </div>
+    <div class="col text-right">
+        <a class="btn btn-sm btn-primary" asp-action="Add">New +</a>
+    </div>
+</div>
+
+<form method="get" style="margin-bottom: 5px;">
+    <div class="form-row align-items-end">
+        <div class="col">
+            <label>Min Date</label>
+            <input  type="date" class="form-control" name="minDate" value="@ViewData["MinDate"]" />
+        </div>
+        <div class="col">
+            <label>Max Date</label>
+            <input type="date" class="form-control" name="maxDate" value="@ViewData["MaxDate"]" />
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-secondary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+    </div>
+</form>
+
+<div class="row">
+
+</div>
+
+<label class="font-italic pl-1">@sales.Count results</label>
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th><a asp-action="List" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-minDate="@ViewData["MinDate"]" asp-route-maxDate="@ViewData["MaxDate"]">Date <i class="fa-solid fa-sort"></i></a></th>
+            <th><a asp-action="List" asp-route-sortOrder="@ViewData["CustomerSortParm"]" asp-route-minDate="@ViewData["MinDate"]" asp-route-maxDate="@ViewData["MaxDate"]">Customer <i class="fa-solid fa-sort"></i></a></th>
+            <th><a asp-action="List" asp-route-sortOrder="@ViewData["ProductSortParm"]" asp-route-minDate="@ViewData["MinDate"]" asp-route-maxDate="@ViewData["MaxDate"]">Product <i class="fa-solid fa-sort"></i></a></th>
+            <th><a asp-action="List" asp-route-sortOrder="@ViewData["QtySortParm"]" asp-route-minDate="@ViewData["MinDate"]" asp-route-maxDate="@ViewData["MaxDate"]">Qty <i class="fa-solid fa-sort"></i></a></th>
+            <th><a asp-action="List" asp-route-sortOrder="@ViewData["AmountSortParm"]" asp-route-minDate="@ViewData["MinDate"]" asp-route-maxDate="@ViewData["MaxDate"]">Amount <i class="fa-solid fa-sort"></i></a></th>
+            <th><a asp-action="List" asp-route-sortOrder="@ViewData["SalespersonSortParm"]" asp-route-minDate="@ViewData["MinDate"]" asp-route-maxDate="@ViewData["MaxDate"]">Salesperson <i class="fa-solid fa-sort"></i></a></th>
+            <th><a asp-action="List" asp-route-sortOrder="@ViewData["CommissionSortParm"]" asp-route-minDate="@ViewData["MinDate"]" asp-route-maxDate="@ViewData["MaxDate"]">Commission <i class="fa-solid fa-sort"></i></a></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sale in sales)
+        {
+        <tr onclick="location.href = '@(Url.Action("View", new { Sa_Key = sale.Sa_Key}))'">
+            <td>@sale.Sa_Date_Trans.ToString("MM/dd/yyyy")</td>
+            <td>@sale.Cu_Name</td>
+            <td>@sale.Pr_Name</td>
+            <td>@sale.Sa_Qty</td>
+            <td>$@sale.Sa_Amt.ToString("N2")</td>
+            <td>@sale.Sp_Name</td>
+            <td>$@sale.Sa_Commission_Amt.ToString("N2")</td>
+        </tr>
+        }
+    </tbody>
+</table>

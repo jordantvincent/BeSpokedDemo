@@ -1,7 +1,7 @@
 ﻿@using BeSpoked.Models;
 @model CustomerModel;
 
-<form method="post" style="margin: 0px auto; max-width: 500px;">
+<form method="post" class="form-custom" style="margin: 50px auto; max-width: 500px;">
     <div class="form-header">
         <h1>Edit Customer</h1>
     </div>
@@ -53,9 +53,13 @@
     </div>
 
     <div class="form-footer">
-        <div class="row text-right" style="margin: 15px 0;">
+        <div class="row" style="margin: 15px 0;">
             <div class="col">
-                <button class="btn btn-sm btn-primary" type="submit"> Save </button>
+                <a class="btn btn-sm btn-outline-dark" asp-action="View" asp-route-Cu_Key="@Model.Cu_Key">Cancel</a>
+            </div>
+            <div class="col text-right">
+                <a class="btn btn-sm btn-outline-dark" asp-action="Edit" asp-route-Cu_Key="@Model.Cu_Key">Reset</a>
+                <button class="btn btn-sm btn-primary" type="submit"> Update </button>
             </div>
         </div>
     </div>

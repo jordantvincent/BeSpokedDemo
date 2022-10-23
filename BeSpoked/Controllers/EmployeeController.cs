@@ -18,16 +18,25 @@ namespace BeSpoked.Controllers
         }
 
 
-        public IActionResult ViewAll()
+        public IActionResult List()
         {
             var employeeList = _employee.GetAll();
             ViewData["EmployeeList"] = employeeList;
 
             return View();
         }
+
+        public IActionResult View(int Em_Key)
+        {
+            ViewData["Employee"] = _employee.GetViewModelById(Em_Key);
+
+            return View();
+        }
         public IActionResult Create()
         {
             EmployeeModel model = new();
+
+            ViewData["Managers"] = _employee.GetManagers();
 
             return View(model);
         }
@@ -38,8 +47,35 @@ namespace BeSpoked.Controllers
             if (ModelState.IsValid)
             {
                 _employee.Create(model);
-                return RedirectToAction("ViewAll");
+
+                return RedirectToAction("View", new { Em_Key = model.Em_Key });
             }
+
+            ViewData["Managers"] = _employee.GetManagers();
+
+            return View(model);
+        }
+
+        public IActionResult Edit(int Em_Key)
+        {
+            EmployeeModel employee = _employee.GetEmployeeById(Em_Key);
+
+            ViewData["Managers"] = _employee.GetManagers();
+
+            return View(employee);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(EmployeeModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _employee.Update(model);
+
+                return RedirectToAction("View", new { Em_Key = model.Em_Key });
+            }
+
+            ViewData["Managers"] = _employee.GetManagers();
 
             return View(model);
         }

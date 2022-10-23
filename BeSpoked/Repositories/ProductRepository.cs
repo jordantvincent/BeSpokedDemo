@@ -86,19 +86,43 @@ namespace BeSpoked.Repositories
             }
         }
 
-        public List<ManufacturerModel> GetManufacturers()
+        public List<SelectListModel> GetManufacturers()
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(_config.GetConnectionString("BeSpoked")))
             {
-                return connection.Query<ManufacturerModel>("Manufacturers_GetAll", commandType: CommandType.StoredProcedure).ToList(); ;
+                return connection.Query<SelectListModel>("Manufacturers_GetSelectList", commandType: CommandType.StoredProcedure).ToList(); ;
             }
         }
 
-        public List<StyleModel> GetStyles()
+        public List<SelectListModel> GetStyles()
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(_config.GetConnectionString("BeSpoked")))
             {
-                return connection.Query<StyleModel>("Styles_GetAll", commandType: CommandType.StoredProcedure).ToList(); ;
+                return connection.Query<SelectListModel>("Styles_GetSelectList", commandType: CommandType.StoredProcedure).ToList(); ;
+            }
+        }
+
+        public List<SelectListModel> GetSelectList()
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(_config.GetConnectionString("BeSpoked")))
+            {
+                return connection.Query<SelectListModel>("Product_GetSelectList", commandType: CommandType.StoredProcedure).ToList(); ;
+            }
+        }
+
+        public void AddDiscount(DiscountModel model)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(_config.GetConnectionString("BeSpoked")))
+            {
+                DynamicParameters p = new();
+                p.Add("@Dc_Pr_Key", model.Dc_Pr_Key);
+                p.Add("@Dc_Date_Beg", model.Dc_Date_Beg);
+                p.Add("@Dc_Date_End", model.Dc_Date_End);
+                p.Add("@Dc_Percent", model.Dc_Percent);
+                p.Add("@Dc_Key", 0, DbType.Int32, ParameterDirection.Output);
+
+                connection.Execute("Discount_Insert", p, commandType: CommandType.StoredProcedure);
+
             }
         }
     }

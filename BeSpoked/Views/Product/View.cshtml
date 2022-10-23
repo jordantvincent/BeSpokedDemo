@@ -4,10 +4,17 @@
     var product = (ProductViewModel)ViewData["Product"];
 }
 
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index" asp-area="">Home</a></li>
+    <li class="breadcrumb-item"><a asp-controller="Product" asp-action="List" asp-area="">Products</a></li>
+    <li class="breadcrumb-item active">@product.Pr_Name</li>
+</ol>
+
 <h1>Product: @product.Pr_Name</h1>
 
 <div class="row">
     <div class="col">
+        <a class="btn btn-sm btn-primary" asp-action="AddDiscount" asp-route-Pr_Key="@product.Pr_Key">Add Discount</a>
         <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-Pr_Key="@product.Pr_Key">Edit</a>
     </div>
 </div>

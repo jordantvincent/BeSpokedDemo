@@ -18,10 +18,29 @@ namespace BeSpoked.Controllers
         }
 
 
-        public IActionResult List()
+        public IActionResult List(string sortOrder)
         {
-            var products = _customer.GetAll();
-            ViewData["CustomerList"] = products;
+            var customers = _customer.GetAll();
+
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["StartSortParm"] = sortOrder == "Started" ? "started_desc" : "Started";
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    customers = customers.OrderByDescending(x => x.Cu_Name).ToList();
+                    break;
+                case "Started":
+                    customers = customers.OrderBy(x => x.Cu_Date_Start).ToList();
+                    break;
+                case "started_desc":
+                    customers = customers.OrderByDescending(x => x.Cu_Date_Start).ToList();
+                    break;
+                default:
+                    customers = customers.OrderBy(x => x.Cu_Name).ToList();
+                    break;
+            }
+            ViewData["CustomerList"] = customers;
 
             return View();
         }
@@ -66,7 +85,7 @@ namespace BeSpoked.Controllers
         {
             if (ModelState.IsValid)
             {
-                _customer.Create(model);
+                _customer.Update(model);
 
                 return RedirectToAction("View", new { Cu_Key = model.Cu_Key });
             }

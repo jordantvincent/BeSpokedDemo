@@ -1,12 +1,12 @@
 ﻿@using BeSpoked.Models;
 @model ProductModel;
 @{
-    var manufacturers = (List<ManufacturerModel>)ViewData["Manufacturers"];
-    var styles = (List<StyleModel>)ViewData["Styles"];
+    var manufacturers = (List<SelectListModel>)ViewData["Manufacturers"];
+    var styles = (List<SelectListModel>)ViewData["Styles"];
 }
 
 
-<form method="post" style="margin: 0px auto; max-width: 500px;">
+<form method="post" class="form-custom" style="margin: 50px auto; max-width: 500px;">
     <div class="form-header">
         <h1>New Product</h1>
     </div>
@@ -27,7 +27,7 @@
                     <option value="@null">Select</option>
                     @foreach (var manufacturer in manufacturers)
                     {
-                        <option value="@manufacturer.Mf_Key">@manufacturer.Mf_Name</option>
+                        <option value="@manufacturer.Key">@manufacturer.Display</option>
                     }
                 </select>
                 <span class="text-danger text-center" asp-validation-for="@Model.Pr_Manufacturer"></span>
@@ -37,8 +37,9 @@
                 <label asp-for="@Model.Pr_Style"></label>
                 <select class="form-control" asp-for="@Model.Pr_Style">
                     <option value="@null">Select</option>
-                    @foreach (var style in styles) { 
-                        <option value="@style.St_Key">@style.St_Desc</option>
+                    @foreach (var style in styles)
+                    {
+                        <option value="@style.Key">@style.Display</option>
                     }
                 </select>
                 <span class="text-danger text-center" asp-validation-for="@Model.Pr_Style"></span>
@@ -76,10 +77,10 @@
     <div class="form-footer">
         <div class="row" style="margin: 15px 0;">
             <div class="col">
-                <a class="btn btn-sm btn-light" asp-action="List">Cancel</a>
+                <a class="btn btn-sm btn-outline-dark" asp-action="List">Cancel</a>
             </div>
             <div class="col text-right">
-                <a class="btn btn-sm btn-secondary" asp-action="Add" asp-route-Pr_Key="@Model.Pr_Key">Clear</a>
+                <a class="btn btn-sm btn-outline-dark" asp-action="Add" asp-route-Pr_Key="@Model.Pr_Key">Clear</a>
                 <button class="btn btn-sm btn-primary" type="submit"> Create </button>
             </div>
         </div>

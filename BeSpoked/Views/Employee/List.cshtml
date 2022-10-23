@@ -1,0 +1,36 @@
+﻿@using BeSpoked.ViewModels;
+@{
+    var employeeList = (List<EmployeeViewModel>)ViewData["EmployeeList"];
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index" asp-area="">Home</a></li>
+    <li class="breadcrumb-item active">Employees</li>
+</ol>
+
+<h1>Employees</h1>
+<a class="btn btn-sm btn-primary" asp-action="Create" asp-controller="Employee"> Add</a>
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone</th>
+            <th>Manager</th>
+            <th>Date Started</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in employeeList)
+        {
+        <tr onclick="location.href = '@(Url.Action("View", new { Em_Key = employee.Em_Key}))'">
+            <td>@employee.Em_Name_First</td>
+            <td>@employee.Em_Name_Last</td>
+            <td>@employee.Em_Phone</td>
+            <td>@employee.Em_Mg_Name</td>
+            <td>@employee.Em_Date_Start.ToString("MM/dd/yyyy")</td>
+        </tr>
+        }
+    </tbody>
+</table>

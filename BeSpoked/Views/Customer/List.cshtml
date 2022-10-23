@@ -1,10 +1,14 @@
 ﻿@using BeSpoked.Models;
+@using BeSpoked.ViewModels;
 @using BeSpoked.Utilities;
 @{
-    var customers = (List<CustomerModel>)ViewData["CustomerList"];
+    var customers = (List<CustomerViewModel>)ViewData["CustomerList"];
 }
 
-
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index" asp-area="">Home</a></li>
+    <li class="breadcrumb-item active">Customers</li>
+</ol>
 
 <h1>Customers</h1>
 
@@ -17,22 +21,18 @@
 <table class="table table-hover table-striped">
     <thead>
         <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th><a asp-action="List" asp-route-sortOrder="@ViewData["NameSortParm"]">Name <i class="fa-solid fa-sort"></i></a></th>
             <th>Phone</th>
-            <th>Start Date</th>
-            <th>Updated</th>
+            <th><a asp-action="List" asp-route-sortOrder="@ViewData["StartSortParm"]">Start Date <i class="fa-solid fa-sort"></i></a></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var customer in customers)
         {
             <tr onclick="location.href = '@(Url.Action("View", new { Cu_Key = customer.Cu_Key}))'">
-                <td>@customer.Cu_Name_First</td>
-                <td>@customer.Cu_Name_Last</td>
+                <td>@customer.Cu_Name</td>
                 <td>@customer.Cu_Phone</td>
                 <td>@customer.Cu_Date_Start.ToString("MM/dd/yyyy")</td>
-                <td>@Formatter.DisplayTimeSince(customer.Updated)</td>
             </tr>
         }
     </tbody>

@@ -5,10 +5,13 @@
 }
 <form method="post" style="margin: 0px auto; max-width: 500px;">
     <div class="form-header">
-        <h1>New Employee</h1>
+        <h1>Edit Employee</h1>
     </div>
 
     <div class="form-body">
+
+        <input hidden asp-for="@Model.Em_Key" />
+
         <div class="row">
             <div class="col">
                 <label asp-for="@Model.Em_Name_First"></label>
@@ -64,7 +67,6 @@
                 <span class="text-danger text-center" asp-validation-for="@Model.Em_Mg_Key"></span>
             </div>
         </div>
-
 
     </div>
 

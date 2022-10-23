@@ -1,0 +1,58 @@
+﻿@using BeSpoked.Models;
+@using BeSpoked.ViewModels;
+@model DiscountModel; 
+@{
+    var product = (ProductViewModel)ViewData["Product"];
+}
+
+<form method="post" class="form-custom" style="margin: 50px auto; max-width: 500px;">
+    <div class="form-header">
+        <h1>Create Product Discount</h1>
+    </div>
+
+    <input hidden asp-for="@Model.Dc_Pr_Key" />
+    <div class="form-body">
+
+        <div class="row">
+            <div class="col">
+                <label> Product</label>
+                <input disabled class="form-control" value="@product.Pr_Name" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label asp-for="@Model.Dc_Date_Beg"></label>
+                <input type="date" class="form-control" asp-for="@Model.Dc_Date_Beg" />
+                <span class="text-danger text-center" asp-validation-for="@Model.Dc_Date_Beg"></span>
+            </div>
+
+            <div class="col">
+                <label asp-for="@Model.Dc_Date_End"></label>
+                <input type="date" class="form-control" asp-for="@Model.Dc_Date_End" />
+                <span class="text-danger text-center" asp-validation-for="@Model.Dc_Date_End"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label asp-for="@Model.Dc_Percent"></label>
+                <input class="form-control" asp-for="@Model.Dc_Percent" placeholder="Alpharetta, GA 30022" />
+                <span class="text-danger text-center" asp-validation-for="@Model.Dc_Percent"></span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-footer">
+        <div class="row" style="margin: 15px 0;">
+            <div class="col">
+                <a class="btn btn-sm btn-outline-dark" asp-action="List">Cancel</a>
+            </div>
+            <div class="col text-right">
+                <a class="btn btn-sm btn-outline-dark" asp-action="Add" asp-route-Pr_Key="@Model.Dc_Pr_Key">Clear</a>
+                <button class="btn btn-sm btn-primary" type="submit"> Create </button>
+            </div>
+        </div>
+    </div>
+</form>

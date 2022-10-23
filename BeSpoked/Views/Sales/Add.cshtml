@@ -1,0 +1,88 @@
+﻿@using BeSpoked.Models;
+@model SalesModel;
+
+@{
+    var products = (List<SelectListModel>)ViewData["Products"];
+    var salespeople = (List<SelectListModel>)ViewData["Salespeople"];
+    var customers = (List<SelectListModel>)ViewData["Customers"];
+}
+
+<form method="post" class="form-custom" style="margin: 50px auto; max-width: 500px;">
+    <div class="form-header">
+        <h1>New Sale</h1>
+    </div>
+
+    <div class="form-body">
+        <div class="row">
+            <div class="col">
+                <label asp-for="@Model.Sa_Cu_Key"></label>
+                <select class="form-control" asp-for="@Model.Sa_Cu_Key">
+                    <option value="@null">Select</option>
+                    @foreach (var customer in customers)
+                    {
+                        <option value="@customer.Key">@customer.Display</option>
+                    }
+                </select>
+                <span class="text-danger text-center" asp-validation-for="@Model.Sa_Cu_Key"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label asp-for="@Model.Sa_Pr_Key"></label>
+                <select class="form-control" asp-for="@Model.Sa_Pr_Key">
+                    <option value="@null">Select</option>
+                    @foreach (var product in products)
+                    {
+                        <option value="@product.Key">@product.Display</option>
+                    }
+                </select>
+                <span class="text-danger text-center" asp-validation-for="@Model.Sa_Pr_Key"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label asp-for="@Model.Sa_Sp_Key"></label>
+                <select class="form-control" asp-for="@Model.Sa_Sp_Key">
+                    <option value="@null">Select</option>
+                    @foreach (var salesperson in salespeople)
+                    {
+                        <option value="@salesperson.Key">@salesperson.Display</option>
+                    }
+                </select>
+                <span class="text-danger text-center" asp-validation-for="@Model.Sa_Sp_Key"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label asp-for="@Model.Sa_Qty"></label>
+                <input class="form-control" asp-for="@Model.Sa_Qty" />
+                <span class="text-danger text-center" asp-validation-for="@Model.Sa_Qty"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label asp-for="@Model.Sa_Date_Trans"></label>
+                <input class="form-control" type="date" asp-for="@Model.Sa_Date_Trans" />
+                <span class="text-danger text-center" asp-validation-for="@Model.Sa_Date_Trans"></span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-footer">
+        <div class="row" style="margin: 15px 0;">
+            <div class="col">
+                <a class="btn btn-sm btn-outline-dark" asp-action="List">Cancel</a>
+            </div>
+            <div class="col text-right">
+                <a class="btn btn-sm btn-outline-dark" asp-action="Add">Clear</a>
+                <button class="btn btn-sm btn-primary" type="submit"> Create </button>
+            </div>
+        </div>
+    </div>
+
+</form>

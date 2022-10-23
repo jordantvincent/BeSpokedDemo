@@ -2,12 +2,15 @@
 @{
     ViewData["Title"] = "Home Page";
 
-    var employees = (List<EmployeeModel>)ViewData["EmployeeList"];
 }
 
-<h1>Employee List</h1>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item active">Home</li>
+</ol>
 
-<a class="btn btn-sm btn-primary" asp-action="ViewAll" asp-controller="Employee"> Employees</a>
+
+<a class="btn btn-sm btn-primary" asp-action="List" asp-controller="Salesperson"> Salespeople</a>
 <a class="btn btn-sm btn-primary" asp-action="List" asp-controller="Product"> Products</a>
 <a class="btn btn-sm btn-primary" asp-action="List" asp-controller="Customer"> Customers</a>
+<a class="btn btn-sm btn-primary" asp-action="List" asp-controller="Sales"> Sales</a>
 

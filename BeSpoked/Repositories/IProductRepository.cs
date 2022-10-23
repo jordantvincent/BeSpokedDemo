@@ -14,7 +14,9 @@ namespace BeSpoked.Repositories
         ProductViewModel GetViewModelById(int Pr_Key);
         void Create(ProductModel model);
         void Update(ProductModel model);
-        List<ManufacturerModel> GetManufacturers();
-        List<StyleModel> GetStyles();
+        void AddDiscount(DiscountModel model);
+        List<SelectListModel> GetManufacturers();
+        List<SelectListModel> GetStyles();
+        List<SelectListModel> GetSelectList();
     }
 }

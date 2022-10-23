@@ -34,8 +34,10 @@ namespace BeSpoked
 
             //Register repositories
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<ISalespersonRepository, SalespersonRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ISalesRepository, SalesRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

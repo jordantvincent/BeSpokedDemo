@@ -23,7 +23,6 @@ namespace BeSpoked.Controllers
 
         public IActionResult Index()
         {
-            ViewData["EmployeeList"] = _employee.GetAll();
 
             return View();
         }

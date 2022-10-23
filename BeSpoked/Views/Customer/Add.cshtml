@@ -1,7 +1,7 @@
 ﻿@using BeSpoked.Models;
 @model CustomerModel;
 
-<form method="post" style="margin: 0px auto; max-width: 500px;">
+<form method="post" class="form-custom" style="margin: 50px auto; max-width: 500px;">
     <div class="form-header">
         <h1>New Customer</h1>
     </div>
@@ -10,12 +10,12 @@
         <div class="row">
             <div class="col">
                 <label asp-for="@Model.Cu_Name_First"></label>
-                <input class="form-control" asp-for="@Model.Cu_Name_First" placeholder="First Name"/>
+                <input class="form-control" asp-for="@Model.Cu_Name_First" placeholder="First Name" />
                 <span class="text-danger text-center" asp-validation-for="@Model.Cu_Name_First"></span>
             </div>
             <div class="col">
                 <label asp-for="@Model.Cu_Name_Last"></label>
-                <input class="form-control" asp-for="@Model.Cu_Name_Last" placeholder="Last Name"/>
+                <input class="form-control" asp-for="@Model.Cu_Name_Last" placeholder="Last Name" />
                 <span class="text-danger text-center" asp-validation-for="@Model.Cu_Name_Last"></span>
             </div>
         </div>
@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col">
                 <label asp-for="@Model.Cu_Addr_1"></label>
-                <input class="form-control" asp-for="@Model.Cu_Addr_1" placeholder="123 Main St"/>
+                <input class="form-control" asp-for="@Model.Cu_Addr_1" placeholder="123 Main St" />
                 <span class="text-danger text-center" asp-validation-for="@Model.Cu_Addr_1"></span>
             </div>
         </div>
@@ -51,9 +51,15 @@
     </div>
 
     <div class="form-footer">
-        <div class="row text-right" style="margin: 15px 0;">
-            <div class="col">
-                <button class="btn btn-sm btn-primary" type="submit"> Create </button>
+        <div class="form-footer">
+            <div class="row" style="margin: 15px 0;">
+                <div class="col">
+                    <a class="btn btn-sm btn-outline-dark" asp-action="List">Cancel</a>
+                </div>
+                <div class="col text-right">
+                    <a class="btn btn-sm btn-outline-dark" asp-action="Add">Clear</a>
+                    <button class="btn btn-sm btn-primary" type="submit"> Create </button>
+                </div>
             </div>
         </div>
     </div>

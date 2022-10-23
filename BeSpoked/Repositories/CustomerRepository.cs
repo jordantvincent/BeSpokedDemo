@@ -1,4 +1,5 @@
 ﻿using BeSpoked.Models;
+using BeSpoked.ViewModels;
 using Dapper;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -50,15 +51,14 @@ namespace BeSpoked.Repositories
 
                 connection.Execute("Customer_Update", p, commandType: CommandType.StoredProcedure);
 
-                model.Cu_Key = p.Get<int>("@Cu_Key");
             }
         }
 
-        public List<CustomerModel> GetAll()
+        public List<CustomerViewModel> GetAll()
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(_config.GetConnectionString("BeSpoked")))
             {
-                return connection.Query<CustomerModel>("Customers_GetAll", commandType: CommandType.StoredProcedure).ToList(); ;
+                return connection.Query<CustomerViewModel>("Customers_GetAll", commandType: CommandType.StoredProcedure).ToList(); ;
             }
         }
 
@@ -73,6 +73,23 @@ namespace BeSpoked.Repositories
             }
         }
 
+        public CustomerViewModel GetViewModelById(int Cu_Key)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(_config.GetConnectionString("BeSpoked")))
+            {
+                DynamicParameters p = new();
+                p.Add("@Cu_Key", Cu_Key);
 
+                return connection.Query<CustomerViewModel>("Customer_Get_VM_ById", p, commandType: CommandType.StoredProcedure).FirstOrDefault(); ;
+            }
+        }
+
+        public List<SelectListModel> GetSelectList()
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(_config.GetConnectionString("BeSpoked")))
+            {
+                return connection.Query<SelectListModel>("Customer_GetSelectList", commandType: CommandType.StoredProcedure).ToList(); ;
+            }
+        }
     }
 }

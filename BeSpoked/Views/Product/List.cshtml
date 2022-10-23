@@ -1,9 +1,13 @@
 ﻿@using BeSpoked.ViewModels;
+@using BeSpoked.Utilities;
 @{
     var products = (List<ProductViewModel>)ViewData["ProductList"];
 }
 
-
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index" asp-area="">Home</a></li>
+    <li class="breadcrumb-item active">Products</li>
+</ol>
 
 <h1>Products</h1>
 
@@ -13,16 +17,18 @@
     </div>
 </div>
 
+<label class="font-italic pl-1">@products.Count Products</label>
+
 <table class="table table-hover table-striped">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Manufacturer</th>
-            <th>Style</th>
-            <th>Purchase Amt</th>
-            <th>Sale Price</th>
-            <th>Qty</th>
-            <th>Commission</th>
+            <th><a asp-action="List" asp-route-sortOrder="@ViewData["NameSortParm"]">Name <i class="fa-solid fa-sort"></i></a></th>
+            <th><a asp-action="List" asp-route-sortOrder="@ViewData["ManufacturerSortParm"]">Manufacturer <i class="fa-solid fa-sort"></i></a></th>
+            <th><a asp-action="List" asp-route-sortOrder="@ViewData["StyleSortParm"]">Style <i class="fa-solid fa-sort"></i></a></th>
+            <th><a asp-action="List" asp-route-sortOrder="@ViewData["PurchaseSortParm"]">Purchase Amt <i class="fa-solid fa-sort"></i></a></th>
+            <th><a asp-action="List" asp-route-sortOrder="@ViewData["PriceSortParm"]">Sale Price <i class="fa-solid fa-sort"></i></a></th>
+            <th><a asp-action="List" asp-route-sortOrder="@ViewData["QtySortParm"]">Qty <i class="fa-solid fa-sort"></i></a></th>
+            <th><a asp-action="List" asp-route-sortOrder="@ViewData["CommissionSortParm"]">Commission <i class="fa-solid fa-sort"></i></a></th>
         </tr>
     </thead>
     <tbody>
@@ -35,7 +41,7 @@
                 <td>$@product.Pr_Amt_Purchase.ToString("N2")</td>
                 <td>$@product.Pr_Amt_Sale.ToString("N2")</td>
                 <td>@product.Pr_Qty</td>
-                <td>@product.Pr_Commission</td>
+                <td>@Formatter.DisplayPercentage(product.Pr_Commission)</td>
             </tr>
         }
     </tbody>
