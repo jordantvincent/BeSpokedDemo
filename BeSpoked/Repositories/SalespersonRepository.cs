@@ -103,5 +103,17 @@ namespace BeSpoked.Repositories
                 return connection.Query<SelectListModel>("Salesperson_GetSelectList", commandType: CommandType.StoredProcedure).ToList(); ;
             }
         }
+
+        public void Terminate(SalespersonTerminateModel model)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(_config.GetConnectionString("BeSpoked")))
+            {
+                DynamicParameters p = new();
+                p.Add("@Sp_Key", model.Sp_Key);
+                p.Add("@Sp_Date_Terminate", model.Sp_Date_Terminate);
+
+                connection.Execute("Salesperson_Terminate", p, commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }

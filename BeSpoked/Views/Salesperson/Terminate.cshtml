@@ -1,0 +1,54 @@
+﻿@using BeSpoked.Models;
+@using BeSpoked.ViewModels; 
+@model SalespersonTerminateModel;
+
+@{ 
+    var salesperson = (SalespersonViewModel)ViewData["Salesperson"];
+}
+ 
+
+<form method="post" class="form-custom" style="margin: 50px auto; max-width: 500px;">
+    <div class="form-header">
+        <h1>Terminate Employee?</h1>
+    </div>
+
+    <div class="form-body">
+        <input hidden asp-for="@Model.Sp_Key" />
+
+        <div class="row">
+            <div class="col">
+                <label>Salesperson</label>
+                <input class="form-control" value="@salesperson.Sp_Name" disabled />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label asp-for="@Model.Sp_Date_Started"></label>
+                <input readonly type="date" class="form-control" asp-for="@Model.Sp_Date_Started" placeholder="First Name" />
+                <span class="text-danger text-center" asp-validation-for="@Model.Sp_Date_Started"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label asp-for="@Model.Sp_Date_Terminate"></label>
+                <input type="date" class="form-control" asp-for="@Model.Sp_Date_Terminate" placeholder="First Name" />
+                <span class="text-danger text-center" asp-validation-for="@Model.Sp_Date_Terminate"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-footer">
+        <div class="form-footer">
+            <div class="row" style="margin: 15px 0;">
+                <div class="col">
+                    <a class="btn btn-sm btn-outline-dark" asp-action="View" asp-route-Sp_Key="@Model.Sp_Key">Cancel</a>
+                </div>
+                <div class="col text-right">
+                    <button class="btn btn-sm btn-danger" type="submit"> Terminate </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

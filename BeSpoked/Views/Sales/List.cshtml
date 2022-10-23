@@ -30,8 +30,14 @@
             <label>Max Date</label>
             <input type="date" class="form-control" name="maxDate" value="@ViewData["MaxDate"]" />
         </div>
+        @if (ViewData["MinDate"] != null || ViewData["MaxDate"] != null)
+        {
+            <div class="col-auto">
+                <a asp-action="List" class="btn btn-secondary" title="Clear search parameters"><i class="fa-solid fa-x"></i></a>
+            </div>
+        }
         <div class="col-auto">
-            <button class="btn btn-secondary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button class="btn btn-secondary" type="submit" title="Perform search"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
     </div>
 </form>

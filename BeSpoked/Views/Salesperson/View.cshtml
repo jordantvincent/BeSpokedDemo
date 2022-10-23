@@ -19,6 +19,10 @@
             <label>Personal Details</label>
         </div>
         <div class="col text-right">
+            @if (!salesperson.Sp_Date_Termination.HasValue)
+            {
+                <a class="btn btn-sm btn-outline-dark" asp-action="Terminate" asp-route-Sp_Key="@salesperson.Sp_Key">Terminate</a>
+            }
             <a class="btn btn-sm btn-outline-dark" asp-action="Edit" asp-route-Sp_Key="@salesperson.Sp_Key"><i class="fa-solid fa-pen-to-square"></i></a>
         </div>
     </div>
@@ -78,7 +82,10 @@
                 <label class="font-weight-bold" asp-for="@salesperson.Sp_Date_Termination"></label>
             </div>
             <div class="col">
-                @salesperson.Sp_Date_Termination.ToString("MM/dd/yyyy")
+                @if (salesperson.Sp_Date_Termination.HasValue)
+                {
+                    <span>@(((DateTime)salesperson.Sp_Date_Termination).ToString("MM/dd/yyyy"))</span>
+                }
             </div>
         </div>
     }

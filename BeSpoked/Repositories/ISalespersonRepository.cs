@@ -12,6 +12,7 @@ namespace BeSpoked.Repositories
         public List<SalespersonViewModel> GetAll();
         SalespersonModel GetById(int Sp_Key);
         public void Create(SalespersonModel model);
+        void Terminate(SalespersonTerminateModel model);
         void Update(SalespersonModel model);
         List<SelectListModel> GetManagerSelectList();
         List<SelectListModel> GetSelectList();

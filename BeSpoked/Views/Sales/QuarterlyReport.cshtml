@@ -53,7 +53,7 @@
             <th><a asp-action="QuarterlyReport" asp-route-Quarter="@quarter" asp-route-Year="@year" asp-route-sortOrder="@ViewData["NameSortParm"]">Salesperson <i class="fa-solid fa-sort"></i></a></th>
             <th><a asp-action="QuarterlyReport" asp-route-Quarter="@quarter" asp-route-Year="@year" asp-route-sortOrder="@ViewData["CommissionSortParm"]">Total Commission <i class="fa-solid fa-sort"></i></a></th>
             <th><a asp-action="QuarterlyReport" asp-route-Quarter="@quarter" asp-route-Year="@year" asp-route-sortOrder="@ViewData["SalesSortParm"]">Total Sales <i class="fa-solid fa-sort"></i></a></th>
-            <th><a asp-action="QuarterlyReport" asp-route-Quarter="@quarter" asp-route-Year="@year" asp-route-sortOrder="@ViewData["CountSortParm"]">Num Sales <i class="fa-solid fa-sort"></i></a></th>
+            <th class="text-center"><a asp-action="QuarterlyReport" asp-route-Quarter="@quarter" asp-route-Year="@year" asp-route-sortOrder="@ViewData["CountSortParm"]">Num Sales <i class="fa-solid fa-sort"></i></a></th>
         </tr>
     </thead>
     <tbody>
@@ -82,7 +82,7 @@
             <td>@salesperson.Sp_Name</td>
             <td>$@salesperson.Sa_Commission_Amt.ToString("N2")</td>
             <td>$@salesperson.Sa_Amt.ToString("N2")</td>
-            <td>@salesperson.Sa_Count</td>
+            <td class="text-center">@salesperson.Sa_Count</td>
 
         </tr>
         }

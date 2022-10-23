@@ -127,5 +127,32 @@ namespace BeSpoked.Controllers
 
             return View(model);
         }
+
+        public IActionResult Terminate(int Sp_Key)
+        {
+            var salesperson = _salesperson.GetViewModelById(Sp_Key);
+            ViewData["Salesperson"] = salesperson;
+
+            SalespersonTerminateModel model = new();
+            model.Sp_Key = Sp_Key;
+            model.Sp_Date_Started = salesperson.Sp_Date_Start;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Terminate(SalespersonTerminateModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _salesperson.Terminate(model);
+
+                return RedirectToAction("View", new { Sp_Key= model.Sp_Key });
+            }
+
+            ViewData["Salesperson"] = _salesperson.GetViewModelById(model.Sp_Key);
+
+            return View(model);
+        }
     }
 }

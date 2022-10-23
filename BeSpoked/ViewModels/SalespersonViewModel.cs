@@ -31,7 +31,9 @@ namespace BeSpoked.ViewModels
 
         [Display(Name = "Start Date")]
         public DateTime Sp_Date_Start { get; set; }
-        public DateTime Sp_Date_Termination { get; set; }
+
+        [Display(Name = "Termination Date")]
+        public DateTime? Sp_Date_Termination { get; set; }
 
         [Display(Name = "Manager")]
         public string Mg_Name { get; set; }
