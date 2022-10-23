@@ -1,4 +1,5 @@
 ﻿@using BeSpoked.ViewModels;
+@using BeSpoked.Utilities; 
 @{ 
     var sale = (SalesViewModel)ViewData["Sale"];
 } 
@@ -8,3 +9,79 @@
     <li class="breadcrumb-item"><a asp-controller="Sales" asp-action="List" asp-area="">Sales</a></li>
     <li class="breadcrumb-item active">View Sale</li>
 </ol>
+
+<h1>Sale #@sale.Sa_Key</h1>
+
+<div class="row">
+    <div class="col">
+        <label>Date Transaction</label>
+    </div>
+    <div class="col">
+        @sale.Sa_Date_Trans.ToString("MM/dd/yyyy")
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <label>Customer Name</label>
+    </div>
+    <div class="col">
+        @sale.Cu_Name
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <label>Product</label>
+    </div>
+    <div class="col">
+        @sale.Pr_Name
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <label>Style</label>
+    </div>
+    <div class="col">
+        @sale.Pr_Style
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <label>Quantity</label>
+    </div>
+    <div class="col">
+        @sale.Sa_Qty
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <label>Sale Total</label>
+    </div>
+    <div class="col">
+        $@sale.Sa_Amt
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col">
+        <label>Salesperson</label>
+    </div>
+    <div class="col">
+        @sale.Sp_Name
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <label>Commission Amount</label>
+    </div>
+    <div class="col">
+        $@sale.Sa_Commission_Amt (@Formatter.DisplayPercentage(sale.Sa_Commission_Percent))
+    </div>
+</div>
+

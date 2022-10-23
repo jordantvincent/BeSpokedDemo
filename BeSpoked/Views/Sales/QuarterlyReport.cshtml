@@ -19,20 +19,7 @@
 <div class="row" style="float:right; margin-bottom: 20px;">
     <div class="col-auto">
         <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Quarter: @quarter
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <a class="dropdown-item" asp-action="QuarterlyReport" asp-route-Quarter="1" asp-route-Year="@year">Q1</a>
-                <a class="dropdown-item" asp-action="QuarterlyReport" asp-route-Quarter="2" asp-route-Year="@year">Q2</a>
-                <a class="dropdown-item" asp-action="QuarterlyReport" asp-route-Quarter="3" asp-route-Year="@year">Q3</a>
-                <a class="dropdown-item" asp-action="QuarterlyReport" asp-route-Quarter="4" asp-route-Year="@year">Q4</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-auto">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Year: @year
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -43,45 +30,61 @@
             </div>
         </div>
     </div>
+    <div class="col-auto">
+        <div class="dropdown">
+            <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Quarter: @quarter
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <a class="dropdown-item" asp-action="QuarterlyReport" asp-route-Quarter="1" asp-route-Year="@year">Q1</a>
+                <a class="dropdown-item" asp-action="QuarterlyReport" asp-route-Quarter="2" asp-route-Year="@year">Q2</a>
+                <a class="dropdown-item" asp-action="QuarterlyReport" asp-route-Quarter="3" asp-route-Year="@year">Q3</a>
+                <a class="dropdown-item" asp-action="QuarterlyReport" asp-route-Quarter="4" asp-route-Year="@year">Q4</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 
 <table class="table table-hover">
     <thead>
         <tr>
-            <th>Rank</th>
-            <th>Salesperson</th>
-            <th>Total Commission</th>
+            <th><a asp-action="QuarterlyReport" asp-route-Quarter="@quarter" asp-route-Year="@year" asp-route-sortOrder="@ViewData["RankSortParm"]">Rank <i class="fa-solid fa-sort"></i></a></th>
+            <th><a asp-action="QuarterlyReport" asp-route-Quarter="@quarter" asp-route-Year="@year" asp-route-sortOrder="@ViewData["NameSortParm"]">Salesperson <i class="fa-solid fa-sort"></i></a></th>
+            <th><a asp-action="QuarterlyReport" asp-route-Quarter="@quarter" asp-route-Year="@year" asp-route-sortOrder="@ViewData["CommissionSortParm"]">Total Commission <i class="fa-solid fa-sort"></i></a></th>
+            <th><a asp-action="QuarterlyReport" asp-route-Quarter="@quarter" asp-route-Year="@year" asp-route-sortOrder="@ViewData["SalesSortParm"]">Total Sales <i class="fa-solid fa-sort"></i></a></th>
+            <th><a asp-action="QuarterlyReport" asp-route-Quarter="@quarter" asp-route-Year="@year" asp-route-sortOrder="@ViewData["CountSortParm"]">Num Sales <i class="fa-solid fa-sort"></i></a></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var salesperson in summary)
         {
-            <tr>
-                <td>
-                    <span>@salesperson.Sa_Rank</span>
+        <tr>
+            <td>
+                <span>@salesperson.Sa_Rank</span>
 
-                    @switch (salesperson.Sa_Rank)
-                    {
-                        case 1:
-                            <i class="fa-solid fa-medal" style="color: #fbb22f"></i>
-                            break;
-                        case 2:
-                            <i class="fa-solid fa-medal" style="color: #b2b2b2"></i>
-                            break;
-                        case 3:
-                            <i class="fa-solid fa-medal" style="color: #8d591a"></i>
-                            break;
-                        default:
-                            break;
-                    }
-                </td>
+                @switch (salesperson.Sa_Rank)
+                {
+                    case 1:
+                        <i class="fa-solid fa-medal" style="color: #fbb22f" title="#1 salesperson this quarter"></i>
+                        break;
+                    case 2:
+                        <i class="fa-solid fa-medal" style="color: #b2b2b2" title="#2 salesperson this quarter"></i>
+                        break;
+                    case 3:
+                        <i class="fa-solid fa-medal" style="color: #8d591a" title="#3 salesperson this quarter"></i>
+                        break;
+                    default:
+                        break;
+                }
+            </td>
 
-                <td>@salesperson.Sp_Name</td>
+            <td>@salesperson.Sp_Name</td>
+            <td>$@salesperson.Sa_Commission_Amt.ToString("N2")</td>
+            <td>$@salesperson.Sa_Amt.ToString("N2")</td>
+            <td>@salesperson.Sa_Count</td>
 
-                <td>$@salesperson.Sa_Commission_Amt.ToString("N2")</td>
-
-            </tr>
+        </tr>
         }
     </tbody>
 </table>

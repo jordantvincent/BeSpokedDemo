@@ -46,7 +46,7 @@
         <div class="row">
             <div class="col">
                 <label asp-for="@Model.Sp_Phone"></label>
-                <input type="number" class="form-control" asp-for="@Model.Sp_Phone" placeholder="Phone" />
+                <input class="form-control" asp-for="@Model.Sp_Phone" placeholder="Phone" />
                 <span class="text-danger text-center" asp-validation-for="@Model.Sp_Phone"></span>
             </div>
             <div class="col">
@@ -60,7 +60,7 @@
             <div class="col">
                 <label asp-for="@Model.Sp_Mg_Key"></label>
                 <select class="form-control" asp-for="@Model.Sp_Mg_Key">
-                    <option value="@null">Select</option>
+                    <option value="0">Select</option>
                     @foreach (var manager in managers)
                     {
                         <option value="@manager.Key">@manager.Display</option>

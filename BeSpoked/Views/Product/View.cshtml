@@ -60,7 +60,15 @@
         <label asp-for="@product.Pr_Amt_Sale"></label>
     </div>
     <div class="col">
-        $@product.Pr_Amt_Sale
+        @switch (product.Pr_Amt_Discount)
+        {
+            case 0:
+                <span>$@product.Pr_Amt_Sale</span>
+                break;
+            default:
+                <span>$@(((product.Pr_Amt_Sale * (1 - product.Pr_Amt_Discount))).ToString("N2")) <span class="badge badge-danger">@Formatter.DisplayPercentage(product.Pr_Amt_Discount) OFF</span></span>
+                break;
+        }
     </div>
 </div>
 

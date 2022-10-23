@@ -9,6 +9,7 @@ namespace BeSpoked.ViewModels
     {
         public int Sa_Key { get; set; }
         public string Pr_Name { get; set; }
+        public string Pr_Style { get; set; }
         public string Cu_Name { get; set; }
         public string Sp_Name { get; set; }
         public DateTime Sa_Date_Trans { get; set; }

@@ -11,9 +11,9 @@
 
 <h1>Products</h1>
 
-<div class="row" style="margin-bottom: 30px;">
+<div class="row text-right" style="margin-bottom: 5px;">
     <div class="col">
-        <a class="btn btn-sm btn-primary" asp-action="Add">New Product +</a>
+        <a class="btn btn-sm btn-outline-dark" asp-action="Add">New Product +</a>
     </div>
 </div>
 
@@ -40,8 +40,8 @@
                 <td>@product.Pr_Style</td>
                 <td>$@product.Pr_Amt_Purchase.ToString("N2")</td>
                 <td>$@product.Pr_Amt_Sale.ToString("N2")</td>
-                <td>@product.Pr_Qty</td>
-                <td>@Formatter.DisplayPercentage(product.Pr_Commission)</td>
+                <td class="text-center">@product.Pr_Qty</td>
+                <td class="text-center">@Formatter.DisplayPercentage(product.Pr_Commission)</td>
             </tr>
         }
     </tbody>

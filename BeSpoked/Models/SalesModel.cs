@@ -18,14 +18,17 @@ namespace BeSpoked.Models
 
         [Required]
         [Display(Name = "Product")]
+        [Range(1, int.MaxValue, ErrorMessage = "Please select a customer")]
         public int Sa_Pr_Key { get; set; }
 
         [Required]
         [Display(Name = "Salesperson")]
+        [Range(1, int.MaxValue, ErrorMessage = "Please select a product")]
         public int Sa_Sp_Key { get; set; }
 
         [Required]
         [Display(Name = "Customer")]
+        [Range(1, int.MaxValue, ErrorMessage = "Please select a salesperson")]
         public int Sa_Cu_Key { get; set; }
 
         [Required]
@@ -34,6 +37,7 @@ namespace BeSpoked.Models
 
         [Required]
         [Display(Name = "Quantity")]
+        [Range(1, int.MaxValue, ErrorMessage = "Quantity must be greater than 0")]
         public int Sa_Qty { get; set; }
 
     }

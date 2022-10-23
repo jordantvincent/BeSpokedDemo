@@ -29,5 +29,8 @@ namespace BeSpoked.ViewModels
 
         [Display(Name = "Commission")]
         public decimal Pr_Commission { get; set; }
+
+        [Display(Name = "Commission")]
+        public decimal Pr_Amt_Discount { get; set; }
     }
 }

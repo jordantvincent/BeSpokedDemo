@@ -142,27 +142,66 @@ namespace BeSpoked.Controllers
             return View();
         }
 
-        public IActionResult QuarterlyReport(int? year, int? quarter)
+        public IActionResult QuarterlyReport(string sortOrder, int? year, int? quarter)
         {
 
-            //defaults to current year
+            //defaults to current year and quarter
             if (!year.HasValue)
             {
                 year = DateTime.Today.Year;
                 quarter = ((DateTime.Today.Month + 2) / 3);
             }
-            ////defaults to current quarter if no year is provided
-            //if (!quarter.HasValue)
-            //{
-            //    quarter = ((DateTime.Today.Month + 2) /3);
-            //}
+
           
 
             ViewData["Year"] = year;
             ViewData["Quarter"] = quarter;
             ViewData["Years"] = _sales.GetSalesYears();
 
-            ViewData["Summary"] = _sales.GetQuarterlyReport((int)year, (int)quarter);
+            var summary = _sales.GetQuarterlyReport((int)year, (int)quarter);
+
+            ViewData["RankSortParm"] = String.IsNullOrEmpty(sortOrder) ? "rank_desc" : "";
+            ViewData["NameSortParm"] = sortOrder == "Name" ? "name_desc" : "Name";
+            ViewData["CommissionSortParm"] = sortOrder == "Commission" ? "commission_desc" : "Commission";
+            ViewData["SalesSortParm"] = sortOrder == "Sales" ? "sales_desc" : "Sales";
+            ViewData["CountSortParm"] = sortOrder == "Count" ? "count_desc" : "Count";
+
+            switch (sortOrder)
+            {
+                case "rank_desc":
+                    summary = summary.OrderByDescending(x => x.Sa_Rank).ToList();
+                    break;
+                case "Name":
+                    summary = summary.OrderBy(x => x.Sp_Name).ToList();
+                    break;
+                case "name_desc":
+                    summary = summary.OrderByDescending(x => x.Sp_Name).ToList();
+                    break;
+                case "Commission":
+                    summary = summary.OrderBy(x => x.Sa_Commission_Amt).ToList();
+                    break;
+                case "commission_desc":
+                    summary = summary.OrderByDescending(x => x.Sa_Commission_Amt).ToList();
+                    break;
+                case "Sales":
+                    summary = summary.OrderBy(x => x.Sa_Amt).ToList();
+                    break;
+                case "sales_desc":
+                    summary = summary.OrderByDescending(x => x.Sa_Amt).ToList();
+                    break;
+                case "Count":
+                    summary = summary.OrderBy(x => x.Sa_Count).ToList();
+                    break;
+                case "count_desc":
+                    summary = summary.OrderByDescending(x => x.Sa_Count).ToList();
+                    break;
+                default:
+                    summary = summary.OrderBy(x => x.Sa_Rank).ToList();
+                    break;
+            }
+
+            ViewData["Summary"] = summary;
+
             return View();
         }
     }

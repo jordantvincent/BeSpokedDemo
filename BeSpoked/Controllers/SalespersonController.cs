@@ -3,6 +3,7 @@ using BeSpoked.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -73,9 +74,19 @@ namespace BeSpoked.Controllers
         {
             if (ModelState.IsValid)
             {
-                _salesperson.Create(model);
+                try
+                {
+                    _salesperson.Create(model);
 
-                return RedirectToAction("View", new { Sp_Key = model.Sp_Key });
+                    return RedirectToAction("View", new { Sp_Key = model.Sp_Key });
+                }
+                catch (SqlException e)
+                {
+                    if (e.Number == 2627)
+                    {
+                        ModelState.AddModelError("Sp_Name_First", "Salesperson already exists.");
+                    }
+                }
             }
 
             ViewData["Managers"] = _salesperson.GetManagerSelectList();
@@ -97,9 +108,19 @@ namespace BeSpoked.Controllers
         {
             if (ModelState.IsValid)
             {
-                _salesperson.Update(model);
-                return RedirectToAction("View", new { Sp_Key = model.Sp_Key });
+                try
+                {
+                    _salesperson.Update(model);
+                    return RedirectToAction("View", new { Sp_Key = model.Sp_Key });
+                }
 
+                catch (SqlException e)
+                {
+                    if (e.Number == 2627)
+                    {
+                        ModelState.AddModelError("Sp_Name_First", "Salesperson already exists.");
+                    }
+                }
             }
 
             ViewData["Managers"] = _salesperson.GetManagerSelectList();

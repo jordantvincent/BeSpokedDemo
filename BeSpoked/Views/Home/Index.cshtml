@@ -4,13 +4,44 @@
 
 }
 
-<ol class="breadcrumb">
-    <li class="breadcrumb-item active">Home</li>
-</ol>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Welcome to BeSpoked Bikes</h1>
+        <p class="lead">Navigate using the links below.</p>
+    </div>
+</div>
 
 
-<a class="btn btn-sm btn-primary" asp-action="List" asp-controller="Salesperson"> Salespeople</a>
-<a class="btn btn-sm btn-primary" asp-action="List" asp-controller="Product"> Products</a>
-<a class="btn btn-sm btn-primary" asp-action="List" asp-controller="Customer"> Customers</a>
-<a class="btn btn-sm btn-primary" asp-action="List" asp-controller="Sales"> Sales</a>
+<div class="navigation-grid">
+    <div class="grid-item" onclick="location.href = '@(Url.Action("List", "Product"))'">
+        <div class="grid-label">
+            <i class="fa-solid fa-bicycle"></i>
+            PRODUCTS
+        </div>
+    </div>
+    <div class="grid-item" onclick="location.href = '@(Url.Action("List", "Customer", new { Area = "BASE" }))'">
+        <div class="grid-label">
+            <i class="fa-solid fa-person"></i>
+            CUSTOMERS
+        </div>
+    </div>
+
+    <div class="grid-item" onclick="location.href = '@(Url.Action("List", "Salesperson", new { Area = "HumanResources" }))'">
+        <div class="grid-label">
+            <i class="fas fa-users"></i>
+            SALESPEOPLE
+        </div>
+    </div>
+
+    <div class="grid-item" onclick="location.href = '@(Url.Action("List", "Sales", new { Area = "identity" }))'">
+        <div class="grid-label">
+            <i class="fa-solid fa-sack-dollar"></i>            
+            <div>
+                SALES
+            </div>
+        </div>
+    </div>
+</div>
+
+
 

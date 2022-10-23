@@ -87,3 +87,54 @@ form.form-custom {
 th > a{
     color: inherit;
 }
+
+
+div.navigation-grid {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 1em;
+}
+
+    div.navigation-grid > div {
+        background-color: red;
+    }
+        div.navigation-grid > div.grid-item {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 0px 17px -10px rgba(0,0,0,0.63);
+            border: 1px solid #e5e5e5;
+            position: relative;
+            min-height: 180px;
+            color: rgba(0,0,0,0.63);
+        }
+
+            div.navigation-grid > div.grid-item:hover {
+                cursor: pointer;
+                background-color: #f6f6f6;
+                color: #000000;
+            }
+
+div.grid-item > div.grid-label {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+div.grid-item > * i {
+    font-size: 2.5em;
+    display: block;
+    margin-bottom: 0.25em;
+}
+
+
+.jumbotron {
+    padding-left:50px;
+    border-radius: 8px;
+    color: white;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%);
+}

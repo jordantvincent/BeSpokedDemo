@@ -12,12 +12,13 @@
 
 <h1>Customers</h1>
 
-<div class="row" style="margin-bottom: 30px;">
+<div class="row text-right" style="margin-bottom: 5px;">
     <div class="col">
-        <a class="btn btn-sm btn-primary" asp-action="Add">New Customer +</a>
+        <a class="btn btn-sm btn-outline-dark" asp-action="Add">New Customer +</a>
     </div>
 </div>
 
+<label class="font-italic pl-1">@customers.Count Customers</label>
 <table class="table table-hover table-striped">
     <thead>
         <tr>

@@ -17,7 +17,7 @@
             <div class="col">
                 <label asp-for="@Model.Sa_Cu_Key"></label>
                 <select class="form-control" asp-for="@Model.Sa_Cu_Key">
-                    <option value="@null">Select</option>
+                    <option value="0">Select</option>
                     @foreach (var customer in customers)
                     {
                         <option value="@customer.Key">@customer.Display</option>
@@ -31,7 +31,7 @@
             <div class="col">
                 <label asp-for="@Model.Sa_Pr_Key"></label>
                 <select class="form-control" asp-for="@Model.Sa_Pr_Key">
-                    <option value="@null">Select</option>
+                    <option value="0">Select</option>
                     @foreach (var product in products)
                     {
                         <option value="@product.Key">@product.Display</option>
@@ -45,7 +45,7 @@
             <div class="col">
                 <label asp-for="@Model.Sa_Sp_Key"></label>
                 <select class="form-control" asp-for="@Model.Sa_Sp_Key">
-                    <option value="@null">Select</option>
+                    <option value="0">Select</option>
                     @foreach (var salesperson in salespeople)
                     {
                         <option value="@salesperson.Key">@salesperson.Display</option>

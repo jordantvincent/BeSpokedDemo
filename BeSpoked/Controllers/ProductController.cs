@@ -141,9 +141,19 @@ namespace BeSpoked.Controllers
         {
             if (ModelState.IsValid)
             {
-                _product.Update(model);
+                try
+                {
+                    _product.Update(model);
+                    return RedirectToAction("View", new { Pr_Key = model.Pr_Key });
 
-                return RedirectToAction("View", new { Pr_Key = model.Pr_Key });
+                }
+                catch (SqlException e)
+                {
+                    if (e.Number == 2627)
+                    {
+                        ModelState.AddModelError("Pr_Name", "Product already exists.");
+                    }
+                }
             }
 
             ViewData["Manufacturers"] = _product.GetManufacturers();

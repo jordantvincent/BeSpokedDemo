@@ -29,7 +29,7 @@
             <div class="col">
                 <label asp-for="@Model.Pr_Manufacturer"></label>
                 <select class="form-control" asp-for="@Model.Pr_Manufacturer">
-                    <option value="@null">Select</option>
+                    <option value="0">Select</option>
                     @foreach (var manufacturer in manufacturers)
                     {
                         <option value="@manufacturer.Key">@manufacturer.Display</option>
@@ -41,7 +41,7 @@
             <div class="col">
                 <label asp-for="@Model.Pr_Style"></label>
                 <select class="form-control" asp-for="@Model.Pr_Style">
-                    <option value="@null">Select</option>
+                    <option value="0">Select</option>
                     @foreach (var style in styles)
                     {
                         <option value="@style.Key">@style.Display</option>
