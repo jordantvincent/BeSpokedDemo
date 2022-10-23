@@ -32,7 +32,7 @@
         {
             <tr onclick="location.href = '@(Url.Action("View", new { Cu_Key = customer.Cu_Key}))'">
                 <td>@customer.Cu_Name</td>
-                <td>@customer.Cu_Phone</td>
+                <td>@Formatter.DisplayPhoneNumber(customer.Cu_Phone)</td>
                 <td>@customer.Cu_Date_Start.ToString("MM/dd/yyyy")</td>
             </tr>
         }

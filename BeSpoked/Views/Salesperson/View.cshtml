@@ -1,4 +1,5 @@
 ﻿@using BeSpoked.ViewModels;
+@using BeSpoked.Utilities;
 @{
     var salesperson = (SalespersonViewModel)ViewData["Salesperson"];
 }
@@ -11,78 +12,84 @@
 
 <h1>Salesperson: @salesperson.Sp_Name_First @salesperson.Sp_Name_Last</h1>
 
-<div class="row">
-    <div class="col">
-        <a class="btn btn-sm btn-outline-dark" asp-action="Edit" asp-route-Sp_Key="@salesperson.Sp_Key"><i class="fa-solid fa-pen-to-square"></i></a>
-    </div>
-</div>
+<div style="max-width: 600px; margin-top:30px;">
 
-<div class="row">
-    <div class="col">
-        <label asp-for="@salesperson.Sp_Name_First"></label>
-    </div>
-    <div class="col">
-        @salesperson.Sp_Name_First
-    </div>
-</div>
-<div class="row">
-    <div class="col">
-        <label asp-for="@salesperson.Sp_Name_Last"></label>
-    </div>
-    <div class="col">
-        @salesperson.Sp_Name_Last
-    </div>
-</div>
-<div class="row">
-    <div class="col">
-        <label asp-for="@salesperson.Sp_Addr_1"></label>
-    </div>
-    <div class="col">
-        @salesperson.Sp_Addr_1
-    </div>
-</div>
-<div class="row">
-    <div class="col">
-        <label asp-for="@salesperson.Sp_Addr_2"></label>
-    </div>
-    <div class="col">
-        @salesperson.Sp_Addr_2
-    </div>
-</div>
-<div class="row">
-    <div class="col">
-        <label asp-for="@salesperson.Sp_Phone"></label>
-    </div>
-    <div class="col">
-        @salesperson.Sp_Phone
-    </div>
-</div>
-<div class="row">
-    <div class="col">
-        <label asp-for="@salesperson.Sp_Date_Start"></label>
-    </div>
-    <div class="col">
-        @salesperson.Sp_Date_Start
-    </div>
-</div>
-@if (!salesperson.Sp_Active)
-{
     <div class="row">
         <div class="col">
-            <label asp-for="@salesperson.Sp_Date_Termination"></label>
+            <label>Personal Details</label>
+        </div>
+        <div class="col text-right">
+            <a class="btn btn-sm btn-outline-dark" asp-action="Edit" asp-route-Sp_Key="@salesperson.Sp_Key"><i class="fa-solid fa-pen-to-square"></i></a>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <label class="font-weight-bold" asp-for="@salesperson.Sp_Name_First"></label>
         </div>
         <div class="col">
-            @salesperson.Sp_Date_Termination
+            @salesperson.Sp_Name_First
         </div>
     </div>
-}
-
-
-<div class="row">
-    <div class="col">
-        <label asp-for="@salesperson.Mg_Name"></label>
+    <div class="row">
+        <div class="col">
+            <label class="font-weight-bold" asp-for="@salesperson.Sp_Name_Last"></label>
+        </div>
+        <div class="col">
+            @salesperson.Sp_Name_Last
+        </div>
     </div>
-    <div class="col">
-        @salesperson.Mg_Name
+    <div class="row">
+        <div class="col">
+            <label class="font-weight-bold" asp-for="@salesperson.Sp_Addr_1"></label>
+        </div>
+        <div class="col">
+            @salesperson.Sp_Addr_1
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label class="font-weight-bold" asp-for="@salesperson.Sp_Addr_2"></label>
+        </div>
+        <div class="col">
+            @salesperson.Sp_Addr_2
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label class="font-weight-bold" asp-for="@salesperson.Sp_Phone"></label>
+        </div>
+        <div class="col">
+            @Formatter.DisplayPhoneNumber(salesperson.Sp_Phone)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label class="font-weight-bold" asp-for="@salesperson.Sp_Date_Start"></label>
+        </div>
+        <div class="col">
+            @salesperson.Sp_Date_Start.ToString("MM/dd/yyyy")
+        </div>
+    </div>
+    @if (!salesperson.Sp_Active)
+    {
+        <div class="row">
+            <div class="col">
+                <label class="font-weight-bold" asp-for="@salesperson.Sp_Date_Termination"></label>
+            </div>
+            <div class="col">
+                @salesperson.Sp_Date_Termination.ToString("MM/dd/yyyy")
+            </div>
+        </div>
+    }
+
+
+    <div class="row">
+        <div class="col">
+            <label class="font-weight-bold" asp-for="@salesperson.Mg_Name"></label>
+        </div>
+        <div class="col">
+            @salesperson.Mg_Name
+        </div>
     </div>
 </div>

@@ -7,6 +7,10 @@ namespace BeSpoked.Utilities
 {
     public static class Formatter
     {
+        public static string DisplayPhoneNumber(string phoneNumber)
+        {
+            return string.Format("({0}) {1}-{2}", phoneNumber.Substring(0, 3), phoneNumber.Substring(3, 3), phoneNumber.Substring(6, 4));
+        }
         public static string DisplayPercentage(decimal input)
         {
             var percentage = input * 100;

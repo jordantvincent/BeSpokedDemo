@@ -183,7 +183,7 @@ namespace BeSpoked.Controllers
 
             ViewData["Product"] = _product.GetViewModelById(model.Dc_Pr_Key);
 
-            return View();
+            return View(model);
         }
     }
 }

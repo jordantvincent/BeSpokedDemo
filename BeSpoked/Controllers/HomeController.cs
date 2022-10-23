@@ -12,13 +12,11 @@ namespace BeSpoked.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly IEmployeeRepository _employee;
 
-        public HomeController(ILogger<HomeController> logger, IEmployeeRepository employee)
+
+        public HomeController()
         {
-            _logger = logger;
-            _employee = employee;
+   
         }
 
         public IActionResult Index()

@@ -12,81 +12,92 @@
 
 <h1>Product: @product.Pr_Name</h1>
 
-<div class="row">
-    <div class="col">
-        <a class="btn btn-sm btn-primary" asp-action="AddDiscount" asp-route-Pr_Key="@product.Pr_Key">Add Discount</a>
-        <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-Pr_Key="@product.Pr_Key">Edit</a>
-    </div>
-</div>
 
-<div class="row">
-    <div class="col">
-        <label asp-for="@product.Pr_Name"></label>
-    </div>
-    <div class="col">
-        @product.Pr_Name
-    </div>
-</div>
 
-<div class="row">
-    <div class="col">
-        <label asp-for="@product.Pr_Manufacturer"></label>
-    </div>
-    <div class="col">
-        @product.Pr_Manufacturer
-    </div>
-</div>
 
-<div class="row">
-    <div class="col">
-        <label asp-for="@product.Pr_Style"></label>
-    </div>
-    <div class="col">
-        @product.Pr_Style
-    </div>
-</div>
+<div style="max-width: 600px; margin-top:30px;">
 
-<div class="row">
-    <div class="col">
-        <label asp-for="@product.Pr_Amt_Purchase"></label>
+    <div class="row">
+        <div class="col">
+            <label>Product Details</label>
+        </div>
+        <div class="col text-right">
+            <a class="btn btn-sm btn-outline-dark" asp-action="AddDiscount" asp-route-Pr_Key="@product.Pr_Key">Add Discount</a>
+            <a class="btn btn-sm btn-outline-dark" asp-action="Edit" asp-route-Pr_Key="@product.Pr_Key">Edit</a>
+        </div>
     </div>
-    <div class="col">
-        $@product.Pr_Amt_Purchase
-    </div>
-</div>
 
-<div class="row">
-    <div class="col">
-        <label asp-for="@product.Pr_Amt_Sale"></label>
-    </div>
-    <div class="col">
-        @switch (product.Pr_Amt_Discount)
-        {
-            case 0:
-                <span>$@product.Pr_Amt_Sale</span>
-                break;
-            default:
-                <span>$@(((product.Pr_Amt_Sale * (1 - product.Pr_Amt_Discount))).ToString("N2")) <span class="badge badge-danger">@Formatter.DisplayPercentage(product.Pr_Amt_Discount) OFF</span></span>
-                break;
-        }
-    </div>
-</div>
+    <hr />
 
-<div class="row">
-    <div class="col">
-        <label asp-for="@product.Pr_Qty"></label>
+    <div class="row">
+        <div class="col">
+            <label class="font-weight-bold" asp-for="@product.Pr_Name"></label>
+        </div>
+        <div class="col">
+            @product.Pr_Name
+        </div>
     </div>
-    <div class="col">
-        @product.Pr_Qty
-    </div>
-</div>
 
-<div class="row">
-    <div class="col">
-        <label asp-for="@product.Pr_Commission"></label>
+    <div class="row">
+        <div class="col">
+            <label class="font-weight-bold" asp-for="@product.Pr_Manufacturer"></label>
+        </div>
+        <div class="col">
+            @product.Pr_Manufacturer
+        </div>
     </div>
-    <div class="col">
-        @Formatter.DisplayPercentage(product.Pr_Commission)
+
+    <div class="row">
+        <div class="col">
+            <label class="font-weight-bold" asp-for="@product.Pr_Style"></label>
+        </div>
+        <div class="col">
+            @product.Pr_Style
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label class="font-weight-bold" asp-for="@product.Pr_Amt_Purchase"></label>
+        </div>
+        <div class="col">
+            $@product.Pr_Amt_Purchase
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label class="font-weight-bold" asp-for="@product.Pr_Amt_Sale"></label>
+        </div>
+        <div class="col">
+            @switch (product.Pr_Amt_Discount)
+            {
+                case 0:
+                    <span>$@product.Pr_Amt_Sale</span>
+                    break;
+                default:
+                    <span>$@(((product.Pr_Amt_Sale * (1 - product.Pr_Amt_Discount))).ToString("N2")) <span class="badge badge-danger">@Formatter.DisplayPercentage(product.Pr_Amt_Discount) OFF</span></span>
+                    break;
+            }
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label class="font-weight-bold" asp-for="@product.Pr_Qty"></label>
+        </div>
+        <div class="col">
+            @product.Pr_Qty
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label class="font-weight-bold" asp-for="@product.Pr_Commission"></label>
+        </div>
+        <div class="col">
+            @Formatter.DisplayPercentage(product.Pr_Commission)
+        </div>
     </div>
 </div>
 

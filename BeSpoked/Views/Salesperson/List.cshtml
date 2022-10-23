@@ -1,4 +1,6 @@
 ﻿@using BeSpoked.ViewModels;
+@using BeSpoked.Utilities;
+ 
 @{
     var salespeople = (List<SalespersonViewModel>)ViewData["Salespeople"];
 }
@@ -32,7 +34,7 @@
         {
         <tr  onclick="location.href = '@(Url.Action("View", new { Sp_Key = salesperson.Sp_Key}))'">
             <td>@salesperson.Sp_Name</td>
-            <td>@salesperson.Sp_Phone</td>
+            <td>@Formatter.DisplayPhoneNumber(salesperson.Sp_Phone)</td>
             <td>@salesperson.Mg_Name</td>
             <td>@salesperson.Sp_Date_Start.ToString("MM/dd/yyyy")</td>
         </tr>

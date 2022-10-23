@@ -24,7 +24,7 @@
     <div class="form-row align-items-end">
         <div class="col">
             <label>Min Date</label>
-            <input  type="date" class="form-control" name="minDate" value="@ViewData["MinDate"]" />
+            <input type="date" class="form-control" name="minDate" value="@ViewData["MinDate"]" />
         </div>
         <div class="col">
             <label>Max Date</label>
@@ -57,15 +57,24 @@
     <tbody>
         @foreach (var sale in sales)
         {
-        <tr onclick="location.href = '@(Url.Action("View", new { Sa_Key = sale.Sa_Key}))'">
-            <td>@sale.Sa_Date_Trans.ToString("MM/dd/yyyy")</td>
-            <td>@sale.Cu_Name</td>
-            <td>@sale.Pr_Name</td>
-            <td>@sale.Sa_Qty</td>
-            <td>$@sale.Sa_Amt.ToString("N2")</td>
-            <td>@sale.Sp_Name</td>
-            <td>$@sale.Sa_Commission_Amt.ToString("N2")</td>
-        </tr>
+            <tr onclick="location.href = '@(Url.Action("View", new { Sa_Key = sale.Sa_Key}))'">
+                <td>@sale.Sa_Date_Trans.ToString("MM/dd/yyyy")</td>
+                <td>@sale.Cu_Name</td>
+                <td>@sale.Pr_Name</td>
+                <td>@sale.Sa_Qty</td>
+                <td>$@sale.Sa_Amt.ToString("N2")</td>
+                <td>@sale.Sp_Name</td>
+                <td>$@sale.Sa_Commission_Amt.ToString("N2")</td>
+            </tr>
         }
     </tbody>
 </table>
+
+@if (sales.Count == 0)
+{
+    <div class="row text-center">
+        <div class="col">
+            No sales
+        </div>
+    </div>
+}
